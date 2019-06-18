@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AWS Serverless Store</title>
+
+    <!-- Meta Tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- End Meta Tags-->
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Styesheets-->
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/form.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/flexslider.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/fancybox.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <!-- End Stylesheets-->
+
+    <!-- Google Font-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800,700,300" />
+    <!-- End Google Font-->
+    <style>
+        .logo h1 a {
+            font-size: 30px;
+            letter-spacing: -1px;
+            color: #fff;
+            text-transform: none;
+        }
+
+        .login-main-text{
+            margin-top: 20%;
+            padding: 60px;
+            color: #fff;
+        }
+
+        .login-main-text h2{
+            font-weight: 300;
+        }
+
+        .input-block-level {
+            min-height: 40px;
+        }
+
+        .navbar {
+            margin-bottom: 0px;
+        }
+
+        h1 {
+            color: #000;
+        }
+
+        .cart {
+            margin-top: 15px;
+        }
+
+        input[type="number"] {
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header class="header" style="background-color: #000000">
+    <div class="wrapper">
+
+        <div class="row-fluid">
+            <!-- Logo -->
+            <div class="logo">
+                <h1><a href="#">AWS Serverless Store</a></h1>
+            </div>
+            <!-- End Logo -->
+
+            <!-- Navigation -->
+            <div class="navbar">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <nav class="nav-collapse">
+                    <ul class="nav pull-right">
+                        <li><a href="index.html">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- End Navigation -->
+        </div>
+
+    </div>
+</header>
+<!-- End Header -->
+
+<div class="cart">
+    <div class="wrapper">
+        <h1>Shopping Cart</h1><br>
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+            <tr>
+                <th style="width:50%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:8%">Quantity</th>
+                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-th="Product">
+                    <div class="row">
+                        <div class="col-sm-2 hidden-xs"><img src="images/0007.jpg" alt="..." class="img-responsive"/></div>
+                        <div class="col-sm-10">
+                            <h4 class="nomargin">100 Days of Real Food</h4>
+                            <p>100 easy wholesome recipes your family will love.</p>
+                        </div>
+                    </div>
+                </td>
+                <td data-th="Price">$5.99</td>
+                <td data-th="Quantity">
+                    <input type="number" class="form-control text-center" value="1">
+                </td>
+                <td data-th="Subtotal" class="text-center">5.99</td>
+                <td class="actions" data-th="">
+                    <a>Remove Item</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr class="visible-xs">
+                <td class="text-center"><strong>Total 5.99</strong></td>
+            </tr>
+            <tr>
+                <td><a href="products.html" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td colspan="2" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Total $5.99</strong></td>
+                <td><a href="ordercomplete.html" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')</script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/modernizr-2.0.6.min.js"></script>
+<script type="text/javascript" src="js/respond.min.js"></script>
+<script type="text/javascript" src="js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="js/jquery.fancybox-1.3.4.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+</body>
+</html>
