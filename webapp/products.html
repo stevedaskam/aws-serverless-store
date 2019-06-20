@@ -68,6 +68,9 @@
 		}
 
 		$( document ).ready(function() {
+			$('#products').empty();
+			let rowDiv = $('<div class="row" style="text-align: center;"><img src="img/Preloader_3.gif"></div>').appendTo('#products');
+
 			getProducts();
 		});
 

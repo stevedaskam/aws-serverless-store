@@ -51,6 +51,12 @@
         }
 
     </style>
+    <script>
+        function login() {
+            alert('login');
+            location.href = "products.html";
+        }
+    </script>
 </head>
 
 <body>
@@ -84,7 +90,7 @@
                         <h2 class="form-signin-heading">Please sign in</h2>
                         <input type="text" class="input-block-level" placeholder="Email address">
                         <input type="password" class="input-block-level" placeholder="Password">
-                        <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+                        <a class="btn btn-primary" onclick="login();">Sign in</a>
                     </form>
                 </div>
             </div>
