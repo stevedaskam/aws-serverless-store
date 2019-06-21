@@ -3,6 +3,7 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = (event, context, callback) => {
     console.log('Retrieving products...');
+    console.log('Received event = ' + JSON.stringify(event));
 
     let params = {
         TableName: 'products',

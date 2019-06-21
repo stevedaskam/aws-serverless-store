@@ -3,7 +3,7 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 exports.handler = (event, context, callback) => {
     console.log('Creating new order...');
-    console.log('event = ' + JSON.stringify(event));
+    console.log('Received event = ' + JSON.stringify(event));
 
     let order = JSON.parse(event['body']);
     console.log(order);

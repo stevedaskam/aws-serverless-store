@@ -3,7 +3,7 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 exports.handler = (event, context, callback) => {
     console.log('Updating Shopping Cart...');
-    console.log('event = ' + JSON.stringify(event));
+    console.log('Received event = ' + JSON.stringify(event));
 
     let cart = JSON.parse(event['body']);
 
