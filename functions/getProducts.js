@@ -5,12 +5,20 @@ exports.handler = (event, context, callback) => {
     console.log('Retrieving products...');
     console.log('Received event = ' + JSON.stringify(event));
 
+    let category = (event.queryStringParameters && event.queryStringParameters.category) ? event.queryStringParameters.category : 'best-sellers';
+
     let params = {
         TableName: 'products',
-        Limit: 15
+        IndexName: 'Category-ProductName-index',
+        Limit: 15,
+        KeyConditionExpression:"Category = :v_category",
+        ExpressionAttributeValues: {
+            ":v_category": category
+        },
+        "ScanIndexForward": false
     };
 
-    docClient.scan(params, function(err, data) {
+    docClient.query(params, function(err, data) {
         if (err) {
             console.log(JSON.stringify(err));
             callback(err, null);
