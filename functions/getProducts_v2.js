@@ -4,12 +4,20 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 exports.handler = (event, context, callback) => {
     console.log('Retrieving products...');
 
+    let category = "deals";
+
     let params = {
         TableName: 'products',
-        Limit: 15
+        IndexName: 'Category-ProductName-index',
+        Limit: 15,
+        KeyConditionExpression:"Category = :v_category",
+        ExpressionAttributeValues: {
+            ":v_category": category
+        },
+        "ScanIndexForward": true
     };
 
-    docClient.scan(params, function(err, data) {
+    docClient.query(params, function(err, data) {
         if (err) {
             console.log(JSON.stringify(err));
             callback(err, null);
