@@ -15,7 +15,7 @@ exports.handler = (event, context, callback) => {
         ExpressionAttributeValues: {
             ":v_category": category
         },
-        "ScanIndexForward": false
+        "ScanIndexForward": true
     };
 
     docClient.query(params, function(err, data) {
