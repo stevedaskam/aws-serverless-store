@@ -45,8 +45,14 @@
 	</style>
 
     <script>
+		let products = [];
+		let shoppingCart = sessionStorage.getItem('serverless-shopping-cart');
+
 		function displayProducts(data) {
 			console.log(data.data);
+			products = data.data.data.Items;
+			console.log(products);
+
 			let cnt = 0;
 			$('#products').empty();
 			let rowDiv = $('<div class="row"></div>').appendTo('#products');
@@ -62,7 +68,7 @@
 				$('<h4>' + product.ProductName + '</h4>').appendTo(innerDiv);
 				$('<img src="' + product.ImageLocation + '" alt="Image">').appendTo(innerDiv);
 				$('<p>$' + product.ProductCost + '</p>').appendTo(innerDiv);
-				$('<a href="#">Add to Cart</a>').appendTo(innerDiv);
+				$('<a onclick="addToCart(' + product.ProductId + ');">Add to Cart</a>').appendTo(innerDiv);
 				cnt++;
 			});
 		}
@@ -78,10 +84,10 @@
 			try {
 				const data = await apiCall();
 				displayProducts(data);
-				//console.log(data);
 			} catch(e) {
 				//Handle error
 				console.log(e);
+				alert('Error retrieving product data!!');
 			}
 		}
 
@@ -95,6 +101,46 @@
 			};
 
 			const result = apigClient.productsGet(params, body, additionalParams);
+			return result;
+		}
+
+		async function addToCart(productId) {
+			console.log(products);
+			var product = products.find(function(element) {
+				return element.ProductId == productId;
+			});
+			console.log(product);
+
+			try {
+				const data = await addItemToCart(product);
+				alert('Item added to cart');
+				localStorage.setItem('serverless-shopping-cart', JSON.stringify(shoppingCart));
+			} catch(e) {
+				//Handle error
+				console.log(e);
+				alert('Error saving shopping cart data!!');
+			}
+		}
+
+		async function addItemToCart(product) {
+			if (shoppingCart == null) {
+				shoppingCart = {};
+			}
+			if(shoppingCart.Products == null) {
+				shoppingCart.Products = [];
+			}
+			shoppingCart.Products.push(product);
+			shoppingCart.UserId = sessionStorage.getItem('userName');
+
+			var apigClient = apigClientFactory.newClient();
+			var params = {};
+			var body = shoppingCart;
+			var additionalParams = {
+				headers: {},
+				queryParams: {}
+			};
+
+			const result = apigClient.shoppingcartPut(params, body, additionalParams);
 			return result;
 		}
 	</script>
