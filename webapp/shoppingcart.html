@@ -114,6 +114,44 @@
             });
         }
 
+        function uuidv4() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        async function createOrder() {
+            let shoppingCart = JSON.parse(localStorage.getItem('serverless-shopping-cart'));
+            let order = {};
+            order.OrderId = uuidv4();
+            order.Products = shoppingCart.Products;
+            console.log(order);
+            try {
+                const data = await apiCall(order);
+                localStorage.removeItem('serverless-shopping-cart');
+                sessionStorage.setItem('order-id', order.OrderId);
+                window.location.href='ordercomplete.html';
+            } catch(e) {
+                //Handle error
+                console.log(e);
+                alert('Error creating order!!');
+            }
+        }
+
+        async function apiCall(order) {
+            var apigClient = apigClientFactory.newClient();
+            var params = {};
+            var body = order;
+            var additionalParams = {
+                headers: {'Content-Type': 'application/json'},
+                queryParams: {}
+            };
+
+            const result = apigClient.ordersPost(params, body, additionalParams);
+            return result;
+        }
+
         $( document ).ready(function() {
             let shoppingCart = JSON.parse(localStorage.getItem('serverless-shopping-cart'));
             if (shoppingCart) {
@@ -192,7 +230,7 @@
                     <td><a href="products.html" class="btn btn-primary"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
                     <td colspan="2" class="hidden-xs"></td>
                     <td class="hidden-xs text-center"><strong>Total $0.00</strong></td>
-                    <td><a href="ordercomplete.html" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                    <td><a onclick="createOrder();" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
                 </tr>
                 </tfoot>
             </table>
@@ -210,6 +248,18 @@
 <script type="text/javascript" src="js/jquery.flexslider.js"></script>
 <script type="text/javascript" src="js/jquery.fancybox-1.3.4.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
+
+<script type="text/javascript" src="js/client/lib/axios/dist/axios.standalone.js"></script>
+<script type="text/javascript" src="js/client/lib/CryptoJS/rollups/hmac-sha256.js"></script>
+<script type="text/javascript" src="js/client/lib/CryptoJS/rollups/sha256.js"></script>
+<script type="text/javascript" src="js/client/lib/CryptoJS/components/hmac.js"></script>
+<script type="text/javascript" src="js/client/lib/CryptoJS/components/enc-base64.js"></script>
+<script type="text/javascript" src="js/client/lib/url-template/url-template.js"></script>
+<script type="text/javascript" src="js/client/lib/apiGatewayCore/sigV4Client.js"></script>
+<script type="text/javascript" src="js/client/lib/apiGatewayCore/apiGatewayClient.js"></script>
+<script type="text/javascript" src="js/client/lib/apiGatewayCore/simpleHttpClient.js"></script>
+<script type="text/javascript" src="js/client/lib/apiGatewayCore/utils.js"></script>
+<script type="text/javascript" src="js/client/apigClient.js"></script>
 
 </body>
 </html>
