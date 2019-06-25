@@ -46,7 +46,7 @@
 
     <script>
 		let products = [];
-		let shoppingCart = sessionStorage.getItem('serverless-shopping-cart');
+		let shoppingCart = JSON.parse(localStorage.getItem('serverless-shopping-cart'));
 
 		function displayProducts(data) {
 			console.log(data.data);
@@ -129,6 +129,8 @@
 			if(shoppingCart.Products == null) {
 				shoppingCart.Products = [];
 			}
+			console.log('shoppingCart = ' + shoppingCart);
+			console.log('Products = ' + shoppingCart.Products);
 			shoppingCart.Products.push(product);
 			shoppingCart.UserId = localStorage.getItem('userName');
 
