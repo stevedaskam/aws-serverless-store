@@ -154,7 +154,7 @@
 
         $( document ).ready(function() {
             let shoppingCart = JSON.parse(localStorage.getItem('serverless-shopping-cart'));
-            if (shoppingCart) {
+            if (shoppingCart && shoppingCart.Products && shoppingCart.Products.length > 0) {
                 $('#shoppingCartBody').empty();
                 hide(document.getElementById('messageDiv'));
                 displayCart(shoppingCart);
