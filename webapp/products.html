@@ -130,7 +130,7 @@
 				shoppingCart.Products = [];
 			}
 			shoppingCart.Products.push(product);
-			shoppingCart.UserId = sessionStorage.getItem('userName');
+			shoppingCart.UserId = localStorage.getItem('userName');
 
 			var apigClient = apigClientFactory.newClient();
 			var params = {};

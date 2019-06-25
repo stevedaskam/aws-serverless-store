@@ -9,22 +9,32 @@ function getPoolData(){
 var userPool;
 
 function getUserPool(){
-	if (userPool===undefined){
-		userPool = new AmazonCognitoIdentity.CognitoUserPool(getPoolData()); 
-	};
+	// if (userPool===undefined){
+	// 	userPool = new AmazonCognitoIdentity.CognitoUserPool(getPoolData());
+	// };
+	// return userPool;
+
+	userPool = new AmazonCognitoIdentity.CognitoUserPool(getPoolData());
 	return userPool;
 }
 
 var cognitoUser;
 
 function getUser(userName){
-	if (cognitoUser===undefined){
-	    var userData = {
-	        Username : userName,
-	        Pool : getUserPool()
-	        };
-    	cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-	}
+	// if (cognitoUser===undefined){
+	//     var userData = {
+	//         Username : userName,
+	//         Pool : getUserPool()
+	//         };
+    // 	cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+	// }
+	// return cognitoUser;
+
+	var userData = {
+		Username : userName,
+		Pool : getUserPool()
+	};
+	cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 	return cognitoUser;
 }
 
